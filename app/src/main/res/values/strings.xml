@@ -2,6 +2,7 @@
     <string name="app_name">SegundoParcial</string>
     <string-array name="roles" >
         <item>Supervisor</item>
-        <item>Construction</item>
+        <item>Construction Manager</item>
+        <item>Project Manager</item>
     </string-array>
 </resources>
