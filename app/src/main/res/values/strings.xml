@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SegundoParcial</string>
+    <string-array name="roles" >
+        <item>Supervisor</item>
+        <item>Construction</item>
+    </string-array>
 </resources>
