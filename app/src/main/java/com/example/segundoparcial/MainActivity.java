@@ -3,9 +3,12 @@ package com.example.segundoparcial;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -64,6 +67,12 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback,
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_principal, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.campoBuscar);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+
+        searchView.setOnQueryTextListener(this);
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -139,7 +148,6 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback,
             this.actualizarTextView();
 
 
-
         }
 
         return false;
@@ -148,6 +156,28 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback,
     @Override
     public boolean onQueryTextSubmit(String s) {
         Log.d("activity", "cambio texto:" + s);
+        UsuarioModel user = new UsuarioModel();
+        user.setUsername("");
+        for(UsuarioModel u: MainActivity.listaUsuarios)
+        {
+            if(u.getUsername().equals(s))
+            {
+                user = u;
+            }
+        }
+
+        if(user.getUsername().equals(""))
+        {
+            DialogText dialog = new DialogText(2, s);
+            dialog.show(getSupportFragmentManager(),"dialogo");
+        }
+        else {
+            DialogText dialog = new DialogText(1, user.getRol());
+            dialog.show(getSupportFragmentManager(),"dialogo");
+
+        }
+
+
         return false;
     }
 

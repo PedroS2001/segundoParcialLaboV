@@ -35,15 +35,6 @@ public class ConfigDialog extends DialogFragment  {
 
 
 
-        /****************************************************/
-
-
-
-        /****************************************************/
-
-
-
-
         return builder.create();
     }
 
